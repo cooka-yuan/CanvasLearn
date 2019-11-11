@@ -1,0 +1,47 @@
+/*
+Write your variables here. All available variables can be
+found in element-ui/packages/theme-chalk/src/common/var.scss.
+For example, to overwrite the theme color:
+*/
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+.el-table_3_column_13 {
+    widows: 200px;
+}
+
+.icon-edit,
+.el-icon-delete {
+    padding: 5px;
+    color: #3584f5;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.icon-edit:hover,
+.el-icon-delete:hover {
+    color: #005bdc;
+}
+
+.el-tabs {
+    height: 100%;
+}
+
+.el-tabs__content {
+    height: 90%;
+}
+
+.el-tab-pane {
+    height: 100%;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: SourceHanSansCN-Light, "PingFangSC-Regular", "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}

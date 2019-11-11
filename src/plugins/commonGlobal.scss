@@ -1,0 +1,149 @@
+/* 智慧社区设备信息列表公共样式(视频，门禁，环境监测，消防)模块 */
+.fun-module {
+
+    // 搜索
+    .search_wrap {
+        position: relative;
+        box-sizing: border-box;
+        width: vw(292);
+        height: vh(30);
+        border-bottom: 1px solid $theme-white-02-color;
+        margin: 0 auto;
+        margin-top: vh(15);
+        background: linear-gradient($theme-blue-color, $theme-blue-color) right bottom;
+        background-size: 6px 2px;
+        background-repeat: no-repeat;
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            height: vh(30);
+            padding: 0 0 vh(11) vw(30);
+            border: none;
+            outline: none;
+            color: $theme-white-05-color;
+            background: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: vh(-6);
+            left: 0;
+            width: vw(30);
+            height: vh(30);
+            color: $theme-white-05-color;
+            line-height: vh(30);
+            text-align: center;
+        }
+    }
+
+    // 信息列表
+    .search_content {
+        position: absolute;
+        top: vh(45);
+        width: vw(292);
+        padding-top: 0;
+        font-family: SourceHanSansCN-Light, sans-serif;
+        letter-spacing: vw(2);
+
+        .list-item {
+            position: relative;
+            height: vh(58);
+            // padding-left: 6px;
+            border-bottom: 1px solid $theme-white-02-color;
+            color: $theme-white-05-color;
+            background: linear-gradient($theme-blue-color, $theme-blue-color) right bottom;
+            background-size: 6px 2px;
+            background-repeat: no-repeat;
+            font-size: $font-size14;
+            line-height: vh(58);
+            cursor: pointer;
+
+            section {
+                display: flex;
+                justify-content: flex-start;
+                height: vh(57);
+                padding: 0 9px 0 6px;
+                margin-top: 1px;
+                background-clip: padding-box;
+                -webkit-box-pack: start;
+
+                &:hover {
+                    color: $theme-white-1-color;
+                    background: $theme-white-01-color;
+                }
+            }
+
+            span {
+                display: block;
+                overflow: hidden;
+                line-height: vw(14);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &:first-child {
+                    margin-bottom: vw(10);
+
+                    i {
+                        margin-right: vw(11);
+                    }
+                }
+
+                &:nth-child(2) {
+                    i {
+                        display: inline-block;
+                        width: vw(6);
+                        height: vw(4);
+                        margin-right: vw(8);
+                        margin-bottom: vw(2);
+                        background: url('/static/commonImages/common_position_icon@2x.png');
+                        background-size: 100% 100%;
+                    }
+                }
+            }
+
+            // 左侧的文案
+            .item-left {
+                float: left;
+                width: 80%;
+                height: vh(38);
+                padding: vh(8) 0;
+            }
+
+            // 右侧的点击按钮
+            .item-right {
+                float: right;
+                width: 20%;
+                height: vh(58);
+                text-align: center;
+
+                span {
+                    display: inline-block;
+                    width: 100%;
+                    height: vh(59);
+                    margin: 0;
+                    color: $theme-blue-color;
+                    line-height: vh(59);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        // 列表被选中
+        .selected {
+            color: $theme-white-1-color;
+            background: $theme-white-01-color;
+        }
+    }
+
+    // 分页样式
+    // .total_num {
+    //     position: absolute;
+    //     bottom: vw(20);
+    //     color: $theme-white-05-color;
+    //     font-weight: 300;
+    //     font-size: $font-size12;
+    //     font-family: SourceHanSansCN, sans-serif;
+    //     letter-spacing: vw(2);
+    // }
+}

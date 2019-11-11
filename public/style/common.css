@@ -1,0 +1,243 @@
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    /* font-family: 'PingFangSC-Medium', Helvetica, Arial, sans-serif; */
+    position: relative;
+    height: 100%;
+}
+
+@font-face {
+    font-family: PingFangSC-Medium;
+    src: url('../font/PingFangMedium.ttf');
+}
+
+@font-face {
+    font-family: PingFangSC-Regular;
+    src: url('../font/PingFangRegular.ttf');
+}
+
+@font-face {
+    font-family: BenderLight;
+    src: url("/font/BenderLight.woff.ttf");
+}
+
+@font-face {
+    font-family: SourceHanSansCN-Light;
+    src: url("/font/SourceHanSansCN-Light.otf");
+}
+
+@font-face {
+    font-family: SourceHanSansCN-Bold;
+    src: url('/font/SourceHanSansCN-Bold.otf');
+}
+
+@font-face {
+    font-family: SourceHanSansCN;
+    src: url('/font/SourceHanSansCN-Normal.otf');
+}
+
+/* 布局样式 */
+@media screen and (min-width: 768px) {
+    .layout {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding-top: 46px;
+        background-color: rgba(240, 240, 240, 1);
+    }
+
+    .layout > .sidebar {
+        position: relative;
+        float: left;
+        height: 100%;
+    }
+
+    .layout > .main-content {
+        position: relative;
+        float: none;
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .layout > .main-content .content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .layout > .main-content .content::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    .layout > .main-content .content::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: rgb(145, 150, 147);
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .layout > .main-content .content::-webkit-scrollbar-track {
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+    }
+}
+
+.sidebar {
+    width: 164px;
+}
+
+.main-content .content {
+    padding: 10px;
+}
+
+/**
+@describe:前台3D界面公共样式
+@author: 袁志宇
+ */
+
+/* 阿里字体图标 */
+
+/* 公共管理模块标题 */
+
+/* .com-menu-panel-title {
+    width: 304px;
+    padding-left: 6px;
+    height: 34px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 500;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.84);
+} */
+
+/* 公共管理模块内容区域样式 */
+
+/* .com-panel-con {
+    margin-top: -1px;
+    width: 331px;
+    height: auto;
+    background: rgba(8, 31, 63, 0.8);
+} */
+
+/* 公共管理模块底部背景样式 */
+
+/* .com-panel-bottom {
+    height: 10px;
+} */
+
+/* 公共tab页菜单样式 */
+.com-tab-menu {
+    width: 312px;
+    height: 50px;
+    margin: 0 auto 10px auto;
+}
+
+.com-tab-menu li {
+    float: left;
+    /* width: 156px;
+    height: 36px; */
+    width: 150px;
+    height: 50px;
+    color: rgba(187, 187, 187, 1);
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    font-size:12px;
+    font-family: SourceHanSansCN-Light, sans-serif;
+font-weight:300;
+}
+
+/* 场景加载完成显示二维元素 */
+.load-view {
+    display: block;
+}
+
+/* 3D视频墙merker气泡样式 */
+.videoWallMar {
+    width: 32px;
+    height: 56px;
+    color: #fff;
+    background: url('/static/patrol/videoSize_marker.png');
+    background-size: 100%;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+}
+
+/* 分页组件固定于面板底部 */
+.el-pagination {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+}
+
+/* element-ui分页组件样式覆盖 */
+.index .el-pagination button,
+.index .el-pagination .el-pager li {
+    width: 14px;
+    height: 14px !important;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent !important;
+    line-height: 14px !important;
+}
+
+.index .el-pagination .el-pager li.active {
+    color: rgba(74,140,255,1);
+}
+
+.index .el-pagination .el-pager li:hover {
+    color: rgba(74,140,255,1);
+}
+
+.index .el-pagination.is-background .el-pager li:not(.disabled).active {
+    box-shadow: 0 0 35px 0 rgba(38, 129, 255, 1);
+}
+
+.index .el-pagination.is-background .btn-prev,
+.index .el-pagination.is-background .btn-next,
+.index .el-pagination.is-background .el-pager li.number {
+    border: 1px solid rgba(38, 129, 255, 1);
+    border-radius: 2px;
+}
+.index .el-pagination .btn-prev,
+.index .el-pagination .btn-next {
+    width: 14px !important;
+    height: 14px !important;
+    line-height: 14px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding: 0 !important;
+    min-width: 14px;
+}
+.index .el-date-editor--datetimerange.el-input__inner {
+    width: 312px !important;
+    border: 0px solid rgba(63, 174, 255, 0.2);
+    margin: 0 auto;
+    background: transparent;
+}
+
+.index .el-input__inner:hover {
+    /* border-color: rgba(63, 174, 255, 0.2) !important; */
+}
+
+.index .el-date-editor--datetimerange.el-input__inner input {
+    color: #fff !important;
+    background: transparent;
+}
