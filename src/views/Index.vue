@@ -44,9 +44,10 @@ export default {
 
     .content {
         width: 100%;
-        height: 100%;
+        height: 800px;
         padding: 10px;
         background: rgba(156, 231, 238, 0.5);
+        overflow: auto;
     }
 }
 </style>
