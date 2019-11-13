@@ -78,6 +78,9 @@
             </tr>
         </table>
         <canvas class="cvs" ref="canvas" width="300" height="150"></canvas>
+        <canvas class="cvs" ref="canvasFill" width="300" height="150"></canvas>
+        <canvas class="cvs" ref="canvasStroke" width="300" height="150"></canvas>
+        <canvas class="cvs" ref="canvasLine" width="600" height="550"></canvas>
     </div>
 </template>
 
@@ -89,6 +92,8 @@ export default {
     },
     mounted() {
         this.init();
+        this.styleColor();
+        this.lineStyle();
     },
     methods: {
         init() {
@@ -107,6 +112,82 @@ export default {
             // 清除指定的矩形区域，然后这块区域会变的完全透明。
             // ctx.clearRect(0, 0, 55, 50);
         },
+        styleColor() {
+            if (!this.$refs.canvasFill.getContext) return;
+            // TODO 检测浏览器支持
+            const ctx = this.$refs.canvasFill.getContext('2d');
+            for (let i = 0; i < 6; i += 1) {
+                for (let j = 0; j < 6; j += 1) {
+                    ctx.fillStyle = `rgb(${Math.floor(255 - 42.5 * i)}, ${Math.floor(255 - 42.5 * j)}, 0)`;
+                    ctx.fillRect(j * 50, i * 50, 50, 50);
+                }
+            }
+
+            if (!this.$refs.canvasStroke.getContext) return;
+            const ctx1 = this.$refs.canvasStroke.getContext('2d');
+            for (let i = 0; i < 6; i += 1) {
+                for (let j = 0; j < 6; j += 1) {
+                    ctx1.strokeStyle = `rgb(${this.randomInt(0, 255)},${this.randomInt(0, 255)},${this.randomInt(0, 255)})`;
+                    ctx1.strokeRect(j * 50, i * 50, 50, 50);
+                }
+            }
+        },
+        randomInt(from, to) {
+            return parseInt(Math.random() * (to - from + 1) + from, 10);
+        },
+        lineStyle() {
+            if (!this.$refs.canvasLine.getContext) return;
+            const ctx = this.$refs.canvasLine.getContext('2d');
+
+            ctx.beginPath();
+            ctx.moveTo(20, 20);
+            ctx.lineTo(100, 100);
+            // 线宽
+            ctx.lineWidth = 10;
+            ctx.stroke();
+            // 线端样式[方形，圆形，]
+            const lineCaps = ['butt', 'round', 'square'];
+            for (let i = 0; i < 3; i += 1) {
+                ctx.beginPath();
+                ctx.moveTo(20 + 30 * i, 20);
+                ctx.lineTo(100 + 30 * i, 100);
+                // 线宽
+                ctx.lineWidth = 10;
+                ctx.lineCap = lineCaps[i];
+                ctx.stroke();
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(0, 30);
+            ctx.lineTo(300, 30);
+
+            ctx.moveTo(0, 100);
+            ctx.lineTo(300, 100);
+
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            const lineJoin = ['round', 'bevel', 'miter'];
+            ctx.lineWidth = 20;
+
+            for (let i = 0; i < lineJoin.length; i += 1) {
+                // 同一个path内，设定线条与线条间接合处的样式。
+                ctx.lineJoin = lineJoin[i];
+                ctx.beginPath();
+                ctx.moveTo(150, 150 + i * 50);
+                ctx.lineTo(200, 200 + i * 50);
+                ctx.lineTo(250, 150 + i * 50);
+                ctx.lineTo(300, 200 + i * 50);
+                ctx.lineTo(350, 150 + i * 50);
+                ctx.stroke();
+            }
+            ctx.closePath();
+
+            ctx.setLineDash([20, 5]); // [实线长度, 间隙长度]
+            ctx.lineDashOffset = -1;
+            ctx.strokeRect(250, 250, 210, 210);
+        },
     },
 };
 </script>
@@ -116,9 +197,6 @@ export default {
 
     canvas {
         float: left;
-    }
-
-    .cvs {
         border: 1px solid red;
     }
 
