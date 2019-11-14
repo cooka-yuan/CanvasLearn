@@ -68,6 +68,47 @@
                 <td>(控制点1(cp1x,cp1y), 控制点2(cp2x,cp2y), 结束点(x,y), 半径</td>
             </tr>
         </table>
+        <canvas ref="canvasText"></canvas>
+        <img src="/static/canvas_img.jpg" alt="" width="100" height="120">
+        <canvas ref="canvasImage"></canvas>
+        <table>
+            <tr>
+                <td>属性</td>
+                <td>描述</td>
+            </tr>
+            <tr>
+                <td>fillText(text, x, y [, maxWidth])</td>
+                <td>填充式文本在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.</td>
+            </tr>
+            <tr>
+                <td>strokeText(text, x, y [, maxWidth])</td>
+                <td>线框式文本在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的.</td>
+            </tr>
+            <tr>
+                <td>font = value</td>
+                <td>字体样式，与css相同的语法，必须放在绘制的文本前面才起作用</td>
+            </tr>
+            <tr>
+                <td>textAlign = value</td>
+                <td>文本对齐，属性值：start, end, left, right or center. 默认值是 start</td>
+            </tr>
+            <tr>
+                <td>textBaseline = value</td>
+                <td>基线对其 属性值：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。</td>
+            </tr>
+            <tr>
+                <td>direction = value</td>
+                <td>文本方向 属性值：ltr, rtl, inherit。默认值是 inherit。</td>
+            </tr>
+            <tr>
+                <td>drawImage(image, x, y, width, height)</td>
+                <td>绘制图片</td>
+            </tr>
+            <tr>
+                <td>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</td>
+                <td>切片 前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。</td>
+            </tr>
+        </table>
     </div>
 </template>
 
@@ -79,6 +120,8 @@ export default {
         this.drawArcTo();
         this.drawLine();
         this.drawThreeLine();
+        this.drawText();
+        this.drawImage();
     },
     methods: {
         init() {
@@ -188,6 +231,35 @@ export default {
             ctx.rect(cp2x, cp2y, 10, 10);
             ctx.rect(x, y, 10, 10);
             ctx.fill();
+        },
+        drawText() {
+            if (!this.$refs.canvasText.getContext) return;
+            const ctx = this.$refs.canvasText.getContext('2d');
+            ctx.font = '20px sans-serif';
+            ctx.textAligin = 'right';
+            ctx.textBaseline = 'middle';
+            // ctx.direction = 'rtl';
+            ctx.fillText('学习canvas', 10, 30, 200);
+            ctx.strokeText('学习canvas', 10, 60, 200);
+        },
+        drawImage() {
+            if (!this.$refs.canvasImage.getContext) return;
+            const ctx = this.$refs.canvasImage.getContext('2d');
+            // 创建img元素
+            const img = new Image();
+            // 考虑到图片是从网络加载 保证在 img 绘制完成之后再 drawImage
+            img.onload = () => {
+                // 绘制img 参数1：要绘制的img  参数2、3：绘制的img在canvas中的坐标，参数4,5 绘制图片的宽高
+                ctx.drawImage(img, 0, 0, 300, 150);
+            };
+            // 注意 图片格式为png/jpg格式，在vue中存储在public下，在asset下加载不出来
+            img.src = '/static/canvas_img.jpg'; // 图片url
+
+            // const img = document.querySelector('img');
+            // ctx.drawImage(img, 10, 10, 100, 150);
+            // document.querySelector('img').onclick = () => {
+            //     this.drawImage();
+            // };
         },
     },
 };
