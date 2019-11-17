@@ -71,6 +71,7 @@
         <canvas ref="canvasText"></canvas>
         <img src="/static/canvas_img.jpg" alt="" width="100" height="120">
         <canvas ref="canvasImage"></canvas>
+        <canvas ref="canvasSave"></canvas>
         <table>
             <tr>
                 <td>属性</td>
@@ -122,6 +123,7 @@ export default {
         this.drawThreeLine();
         this.drawText();
         this.drawImage();
+        this.drawSave();
     },
     methods: {
         init() {
@@ -260,6 +262,26 @@ export default {
             // document.querySelector('img').onclick = () => {
             //     this.drawImage();
             // };
+        },
+        drawSave() {
+            if (!this.$refs.canvasSave.getContext) return;
+            const ctx = this.$refs.canvasSave.getContext('2d');
+
+            ctx.fillRect(0, 0, 150, 150);
+            ctx.save(); // 保存当前状态
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(15, 15, 120, 120);
+            ctx.save();
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(30, 30, 90, 90);
+
+            ctx.restore();
+            ctx.fillRect(45, 45, 60, 60);
+
+            ctx.restore(); //  加载默认颜色配置
+            ctx.fillRect(60, 60, 30, 30);
         },
     },
 };
